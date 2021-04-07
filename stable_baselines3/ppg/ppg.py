@@ -199,10 +199,10 @@ class PPG(PPO):
         self.policy_kwargs["activation_fn"] = th.nn.Identity
 
     def _setup_model(self) -> None:
+        super(PPG, self)._setup_model() 
+        
         self.aux_lr_schedule = get_schedule_fn(self.aux_learning_rate)
         self.policy_kwargs["aux_lr_schedule"] = self.aux_lr_schedule
-
-        super(PPG, self)._setup_model()
 
     def _update_learning_rate(
             self,
